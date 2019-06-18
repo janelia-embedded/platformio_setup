@@ -1,0 +1,17 @@
+#+TITLE: PlatformIO Setup
+#+AUTHOR: Peter Polidoro
+#+EMAIL: peterpolidoro@gmail.com
+
+* Repository Information
+  - Author :: Peter Polidoro
+  - License :: BSD
+
+
+* Build PlatformIO Project
+
+  #+BEGIN_SRC sh
+    source ~/venvs/platformio/bin/activate
+    cd platformio_setup/examples/wiring-blink
+    platformio run -e teensy32 --target upload
+    platformio run --target clean
+  #+END_SRC
