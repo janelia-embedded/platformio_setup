@@ -1,0 +1,47 @@
+#+TITLE: PlatformIO Setup
+#+AUTHOR: Peter Polidoro
+#+EMAIL: peterpolidoro@gmail.com
+
+* Repository Information
+  - Author :: Peter Polidoro
+  - License :: BSD
+
+* IDE
+
+** VSCode
+
+*** Download
+
+    #+BEGIN_SRC sh
+      sudo snap install code --classic
+    #+END_SRC
+
+*** Run
+
+    #+BEGIN_SRC sh
+      code
+    #+END_SRC
+
+*** Install PlatformIO IDE Extenstion
+
+    - Search for the platformio-ide extension and install it.
+    - Restart code.
+
+* Command Line Interface
+
+** Install PlatformIO Core
+
+   #+BEGIN_SRC sh
+     mkdir ~/venvs
+     cd ~/venvs
+     virtualenv platformio
+     source ~/venvs/platformio/bin/activate
+     pip install platformio
+   #+END_SRC
+
+** Install PlatformIO udev rules
+
+   #+BEGIN_SRC sh
+     sudo apt install curl
+     curl -fsSL https://raw.githubusercontent.com/platformio/platformio-core/develop/scripts/99-platformio-udev.rules | sudo tee /etc/udev/rules.d/99-platformio-udev.rules
+   #+END_SRC
