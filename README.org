@@ -45,3 +45,29 @@
      sudo apt install curl
      curl -fsSL https://raw.githubusercontent.com/platformio/platformio-core/develop/scripts/99-platformio-udev.rules | sudo tee /etc/udev/rules.d/99-platformio-udev.rules
    #+END_SRC
+
+** Eclipse
+
+*** Download
+
+    #+BEGIN_SRC sh
+      sudo snap install eclipse --classic
+    #+END_SRC
+
+*** Run
+
+    #+BEGIN_SRC sh
+      eclipse
+    #+END_SRC
+
+*** Generate a project using PIO Core Project Generator
+
+    #+BEGIN_SRC sh
+      source ~/venvs/platformio/bin/activate
+      cd project
+      platformio init --ide eclipse --board efm32pg_stk3401
+    #+END_SRC
+
+*** Import project in IDE
+
+    Import this project via Menu: File > Import... > General > Existing Projects into Workspace > Next and specify root
