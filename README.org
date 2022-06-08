@@ -3,34 +3,75 @@
 #+EMAIL: peter@polidoro.io
 
 * Repository Information
-  - Author :: Peter Polidoro
-  - License :: BSD
+- Author :: Peter Polidoro
+- License :: BSD
 
-* PlatformIO Core CLI
+* Installation
 
-** Installation
+** pip
 
 *** Install PlatformIO Core
 
-    #+BEGIN_SRC sh
-      mkdir ~/venvs
-      cd ~/venvs
-      python3 -m venv platformio
-      source ~/venvs/platformio/bin/activate
-      pip install -U pip
-      pip install -U platformio
-      pio update
-    #+END_SRC
+#+BEGIN_SRC sh
 
-*** Install PlatformIO udev rules if necessary
+mkdir ~/venvs
+cd ~/venvs
+python3 -m venv platformio
+source ~/venvs/platformio/bin/activate
+pip install -U pip
+pip install -U platformio
+pio update
 
-    #+BEGIN_SRC sh
-      sudo wget -P /etc/udev/rules.d/ https://raw.githubusercontent.com/platformio/platformio-core/develop/scripts/99-platformio-udev.rules
-    #+END_SRC
+#+END_SRC
 
-** Use
+** guix
 
-   #+BEGIN_SRC sh
-     pio run -e teensy40 --target upload
-     pio device monitor --echo --eol LF -f send_on_enter
-   #+END_SRC
+*** Install PlatformIO Core
+
+#+BEGIN_SRC sh
+
+guix shell platformio
+
+#+END_SRC
+
+** Install PlatformIO udev rules if necessary
+
+#+BEGIN_SRC sh
+
+sudo wget -P /etc/udev/rules.d/ https://raw.githubusercontent.com/platformio/platformio-core/develop/scripts/99-platformio-udev.rules
+
+#+END_SRC
+
+** Download development platform with examples
+
+#+BEGIN_SRC sh
+
+mkdir -p ~/tmp && cd "$_"
+wget https://github.com/platformio/platform-teensy/archive/develop.zip
+unzip develop.zip
+cd ~/tmp/platform-teensy-develop/examples/arduino-blink/
+
+#+END_SRC
+
+** Initialize PlatformIO project
+
+#+BEGIN_SRC sh
+
+mkdir -p ~/tmp/pio-project && cd "$_"
+pio project init --board teensy31 --board teensy35 --board teensy40 --board teensy41
+
+#+END_SRC
+
+* Use
+
+#+BEGIN_SRC sh
+
+# Upload firmware for the specific environment
+pio run -e teensy40 --target upload
+
+# Clean build files
+pio run --target clean
+
+pio device monitor --echo --eol LF -f send_on_enter
+
+#+END_SRC
